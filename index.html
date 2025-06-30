@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PAYMENT LUTZY HOST</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+    body {
+      margin: 0;
+      background: #121212;
+      font-family: 'Poppins', sans-serif;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    #nameOverlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #121212;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    #nameOverlay div {
+      background: #222;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00ffe7;
+      text-align: center;
+    }
+    header {
+      width: 100%;
+      padding: 15px 0;
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      position: relative;
+      background: #222;
+      text-shadow: 0 0 10px #00ffe7;
+      border-bottom: 2px solid #00ffe7;
+      box-shadow: 0 0 15px #00ffe7;
+    }
+    .lights {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: flex;
+      gap: 12px;
+      transform: translate(-50%, -50%);
+    }
+    .light {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      animation: blink 4s infinite;
+    }
+    .light:nth-child(1) { background: #ff3b3b; animation-delay: 0s; }
+    .light:nth-child(2) { background: #ffb93b; animation-delay: 0.5s; }
+    .light:nth-child(3) { background: #fff53b; animation-delay: 1s; }
+    .light:nth-child(4) { background: #3bff5b; animation-delay: 1.5s; }
+    .light:nth-child(5) { background: #3bafff; animation-delay: 2s; }
+    .light:nth-child(6) { background: #9a3bff; animation-delay: 2.5s; }
+    .light:nth-child(7) { background: #ff3be1; animation-delay: 3s; }
+    .light:nth-child(8) { background: #ff3b6b; animation-delay: 3.5s; }
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; box-shadow: none; }
+      50% { opacity: 1; box-shadow: 0 0 15px currentColor; }
+    }
+    main {
+      margin-top: 40px;
+      max-width: 420px;
+      width: 90%;
+      background: #222;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00ffe7;
+      text-align: center;
+    }
+    img.profile {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #00ffe7;
+      margin-bottom: 25px;
+    }
+    .payment-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    button {
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
+      border: none;
+      color: white;
+      padding: 14px 20px;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    button:hover {
+      background: linear-gradient(45deg, #0072ff, #00c6ff);
+    }
+    .icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      background: white;
+      padding: 2px;
+    }
+    .qr-section {
+      display: none;
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+    .qr-section.show {
+      display: block;
+      opacity: 1;
+    }
+    .qr-section img.qr {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00ffe7;
+    }
+    .qr-section p {
+      margin-top: 15px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #00ffe7;
+      text-shadow: 0 0 5px #00ffe7;
+    }
+    .phone {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffcc00;
+      border-bottom: 2px solid #ffcc00;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    input[type="file"] {
+      margin-top: 10px;
+      padding: 8px;
+      background: #333;
+      color: #eee;
+      border: 1px solid #00ffe7;
+      border-radius: 8px;
+      width: 100%;
+    }
+    .transfer-btn {
+      display: inline-block;
+      background: #00ffe7;
+      color: #121212;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 15px;
+      text-decoration: none;
+      box-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7;
+    }
+    .transfer-btn:hover {
+      background: #00c6b0;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nama overlay -->
+<div id="nameOverlay">
+  <div>
+    <h2 style="color:#00ffe7;">Masukkan Nama Anda</h2>
+    <input type="text" id="buyerName" placeholder="Nama Anda" style="padding:10px; font-size:1rem; width:100%; border-radius:8px; border:none; margin-bottom:15px;">
+    <div id="loading" style="display:none; margin-bottom: 15px;">
+      <div style="border: 4px solid #00ffe7; border-top: 4px solid transparent; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: auto;"></div>
+    </div>
+    <button onclick="submitName()">Lanjutkan</button>
+  </div>
+</div>
+
+<header>
+  PAYMENT LUTZY HOST
+  <div class="lights">
+    <div class="light"></div><div class="light"></div><div class="light"></div><div class="light"></div>
+    <div class="light"></div><div class="light"></div><div class="light"></div><div class="light"></div>
+  </div>
+</header>
+
+<main>
+  <img class="profile" src="https://files.catbox.moe/vvtgus.jpg" alt="Profil" />
+  <div class="payment-buttons">
+    <button id="btn-qris"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/QRIS_logo.svg" class="icon">QRIS</button>
+    <button id="btn-dana"><img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Dana_logo.svg" class="icon">DANA</button>
+    <button id="btn-gopay"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Logo_Gopay.svg" class="icon">Gopay</button>
+  </div>
+
+  <!-- QRIS -->
+  <div id="qris-section" class="qr-section">
+    <img class="qr" src="https://files.catbox.moe/524wy0.jpg" alt="QRIS" />
+    <p>No: <span class="phone">6285927544061</span></p>
+    <p id="timer">Sisa waktu: 05:00</p>
+    <input type="file" id="upload-qris" />
+    <a class="transfer-btn" href="https://wa.me/6285927544061?text=Halo admin, saya sudah transfer via QRIS. Berikut bukti pembayaran saya..." target="_blank">Kirim Bukti</a>
+  </div>
+
+  <!-- DANA -->
+  <div id="dana-section" class="qr-section">
+    <p>Nomor DANA: <span class="phone">081298521133</span></p>
+    <p>No: <span class="phone">6285927544061</span></p>
+    <p id="timer">Sisa waktu: 05:00</p>
+    <input type="file" id="upload-dana" />
+    <a class="transfer-btn" href="https://wa.me/6285927544061?text=Halo admin, saya sudah transfer via DANA. Berikut bukti pembayaran saya..." target="_blank">Kirim Bukti</a>
+  </div>
+
+  <!-- Gopay -->
+  <div id="gopay-section" class="qr-section">
+    <p>Nomor Gopay: <span class="phone">083894757495</span></p>
+    <p>No: <span class="phone">6285927544061</span></p>
+    <p id="timer">Sisa waktu: 05:00</p>
+    <input type="file" id="upload-gopay" />
+    <a class="transfer-btn" href="https://wa.me/6285927544061?text=Halo admin, saya sudah transfer via Gopay. Berikut bukti pembayaran saya..." target="_blank">Kirim Bukti</a>
+  </div>
+</main>
+
+<script>
+  const buttons = {
+    qris: document.getElementById('btn-qris'),
+    dana: document.getElementById('btn-dana'),
+    gopay: document.getElementById('btn-gopay'),
+  };
+
+  const sections = {
+    qris: document.getElementById('qris-section'),
+    dana: document.getElementById('dana-section'),
+    gopay: document.getElementById('gopay-section'),
+  };
+
+  let countdown;
+  function startTimer() {
+    clearInterval(countdown);
+    let time = 300;
+    const timers = document.querySelectorAll('#timer');
+    countdown = setInterval(() => {
+      const m = String(Math.floor(time / 60)).padStart(2, '0');
+      const s = String(time % 60).padStart(2, '0');
+      timers.forEach(t => t.textContent = `Sisa waktu: ${m}:${s}`);
+      if (--time < 0) {
+        clearInterval(countdown);
+        timers.forEach(t => t.textContent = 'Waktu habis! Silakan ulangi pembayaran.');
+      }
+    }, 1000);
+  }
+
+  function showSection(selected) {
+    Object.keys(sections).forEach(key => {
+      sections[key].classList.remove('show');
+      sections[key].style.display = 'none';
+    });
+    sections[selected].style.display = 'block';
+    setTimeout(() => sections[selected].classList.add('show'), 10);
+    startTimer();
+  }
+
+  buttons.qris.addEventListener('click', () => showSection('qris'));
+  buttons.dana.addEventListener('click', () => showSection('dana'));
+  buttons.gopay.addEventListener('click', () => showSection('gopay'));
+
+  function submitName() {
+    const name = document.getElementById('buyerName').value.trim();
+    if (name) {
+      document.getElementById('loading').style.display = 'block';
+      setTimeout(() => {
+        localStorage.setItem('buyerName', name);
+        document.getElementById('nameOverlay').style.display = 'none';
+        document.querySelector('header').innerHTML += `<div style="font-size:1rem; margin-top:10px;">Halo, <span style="color:#00ffe7;">${name}</span> 👋</div>`;
+      }, 1500);
+    } else {
+      alert("Silakan isi nama terlebih dahulu!");
+    }
+  }
+
+  window.onload = () => {
+    const savedName = localStorage.getItem('buyerName');
+    if (savedName) {
+      document.getElementById('nameOverlay').style.display = 'none';
+      document.querySelector('header').innerHTML += `<div style="font-size:1rem; margin-top:10px;">Halo, <span style="color:#00ffe7;">${savedName}</span> 👋</div>`;
+    }
+  };
+</script>
+
+<!-- Musik otomatis -->
+<audio id="bgmusic" autoplay loop>
+  <source src="/mnt/data/HALO%20KAKAK%20UNTUK%20TRANSFER%20BISA%20KE%20SINI.mp3" type="audio/mpeg">
+  Browser Anda tidak mendukung audio.
+</audio>
+
+</body>
+</html>
