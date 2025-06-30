@@ -183,7 +183,7 @@
 </head>
 <body>
 
-<!-- Nama overlay -->
+<!-- Overlay Nama -->
 <div id="nameOverlay">
   <div>
     <h2 style="color:#00ffe7;">Masukkan Nama Anda</h2>
@@ -216,7 +216,7 @@
     <img class="qr" src="https://files.catbox.moe/524wy0.jpg" alt="QRIS" />
     <p>No: <span class="phone">6285927544061</span></p>
     <p id="timer">Sisa waktu: 05:00</p>
-    <input type="file" id="upload-qris" />
+    <input type="file" />
     <a class="transfer-btn" href="https://wa.me/6285927544061?text=Halo admin, saya sudah transfer via QRIS. Berikut bukti pembayaran saya..." target="_blank">Kirim Bukti</a>
   </div>
 
@@ -225,7 +225,7 @@
     <p>Nomor DANA: <span class="phone">081298521133</span></p>
     <p>No: <span class="phone">6285927544061</span></p>
     <p id="timer">Sisa waktu: 05:00</p>
-    <input type="file" id="upload-dana" />
+    <input type="file" />
     <a class="transfer-btn" href="https://wa.me/6285927544061?text=Halo admin, saya sudah transfer via DANA. Berikut bukti pembayaran saya..." target="_blank">Kirim Bukti</a>
   </div>
 
@@ -234,10 +234,15 @@
     <p>Nomor Gopay: <span class="phone">083894757495</span></p>
     <p>No: <span class="phone">6285927544061</span></p>
     <p id="timer">Sisa waktu: 05:00</p>
-    <input type="file" id="upload-gopay" />
+    <input type="file" />
     <a class="transfer-btn" href="https://wa.me/6285927544061?text=Halo admin, saya sudah transfer via Gopay. Berikut bukti pembayaran saya..." target="_blank">Kirim Bukti</a>
   </div>
 </main>
+
+<!-- Musik -->
+<audio id="bgmusic" loop>
+  <source src="HALO KAKAK UNTUK TRANSFER BISA KE SINI.mp3" type="audio/mpeg">
+</audio>
 
 <script>
   const buttons = {
@@ -245,14 +250,13 @@
     dana: document.getElementById('btn-dana'),
     gopay: document.getElementById('btn-gopay'),
   };
-
   const sections = {
     qris: document.getElementById('qris-section'),
     dana: document.getElementById('dana-section'),
     gopay: document.getElementById('gopay-section'),
   };
-
   let countdown;
+
   function startTimer() {
     clearInterval(countdown);
     let time = 300;
@@ -290,6 +294,7 @@
         localStorage.setItem('buyerName', name);
         document.getElementById('nameOverlay').style.display = 'none';
         document.querySelector('header').innerHTML += `<div style="font-size:1rem; margin-top:10px;">Halo, <span style="color:#00ffe7;">${name}</span> 👋</div>`;
+        document.getElementById('bgmusic').play().catch(() => {});
       }, 1500);
     } else {
       alert("Silakan isi nama terlebih dahulu!");
@@ -301,15 +306,10 @@
     if (savedName) {
       document.getElementById('nameOverlay').style.display = 'none';
       document.querySelector('header').innerHTML += `<div style="font-size:1rem; margin-top:10px;">Halo, <span style="color:#00ffe7;">${savedName}</span> 👋</div>`;
+      document.getElementById('bgmusic').play().catch(() => {});
     }
   };
 </script>
-
-<!-- Musik otomatis -->
-<audio id="bgmusic" autoplay loop>
-  <source src="/mnt/data/HALO%20KAKAK%20UNTUK%20TRANSFER%20BISA%20KE%20SINI.mp3" type="audio/mpeg">
-  Browser Anda tidak mendukung audio.
-</audio>
 
 </body>
 </html>
